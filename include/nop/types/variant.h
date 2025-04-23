@@ -255,7 +255,8 @@ class Variant {
   // multiple element types.
   template <typename T, typename U>
   void Assign(TypeTag<T>, U&& value) {
-    if (!value_.template Assign<>(TypeTag<T>{}, index_, std::forward<U>(value))) {
+    if (!value_.template Assign<>(TypeTag<T>{}, index_,
+                                  std::forward<U>(value))) {
       Destruct();
       Construct(TypeTag<T>{}, std::forward<U>(value));
     }
